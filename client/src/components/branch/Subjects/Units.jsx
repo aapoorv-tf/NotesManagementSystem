@@ -6,7 +6,6 @@ import download from "downloadjs";
 import '../../../css/Upload.scss'
 import { Context } from "../../../context/Context.js";
 import '../../../css/units.css'
-import Star from '../../../../src/icons/star.png'
 
 export default function Notes(props) {
   const [file, setFile] = useState(null);
@@ -15,7 +14,6 @@ export default function Notes(props) {
   const [getFiles, setGetFiles] = useState(true);
   const [title, setTitle] = useState("");
   const { user } = useContext(Context);
-  // const [isStarred, setIsStarred] = useState({});
   const dropRef = useRef();
 
   function onDrop(files) {
@@ -107,12 +105,6 @@ export default function Notes(props) {
     const fetchPosts = async () => {
       const res = await axios.get("files/" + props.name);
       setFiles(res.data);
-      // const stars = {};
-      // for (let i = 0; i < files.length; i++) {
-      //   stars[files[i]._id] = user.starredFiles.indexOf(files[i]) + 1;
-      // }
-      // console.log(stars);
-      // setIsStarred(stars);
     };
     fetchPosts();
   });
@@ -178,13 +170,7 @@ export default function Notes(props) {
                   alt=""
                 />
                 </td>
-                {/* <td
-                  onClick={() => {
-                    handleStar(f);
-                  }}
-                >
-                  {f["likedBy"].indexOf(user._id) > -1 ? "Unstar" : "Star"}
-                </td> */}
+
                 <td>{f["title"]}</td>
                 <td>
                   <a
